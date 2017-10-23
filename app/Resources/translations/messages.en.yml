@@ -29,6 +29,22 @@ menu.about.home:   Project Home
 menu.about.docs:   Documentation
 menu.about.issues: Report Issues
 
+menu.transformations: Transformationen
+menu.transformations.list: Übersicht
+menu.data: Daten
+menu.data.list: Übersicht
+menu.data.streams: Datenströme
+menu.data.sources: Datenquellen
+menu.data.analyse: Analysen
+menu.processes: Prozesse
+menu.processes.list: Übersicht
+menu.experience: Erfahrung
+menu.experience.list: Übersicht
+menu.communication: Kommunikation
+menu.communication.communities: Communities
+menu.networks: Vernetzungen
+menu.networks.list: Übersicht
+
 # We let EasyAdmin generate the rest of the backend labels
 # (they are translated following the 2) method)
 # ------------------------------------------------------------------------------

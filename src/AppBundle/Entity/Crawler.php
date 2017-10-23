@@ -2,11 +2,10 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Transformation
+ * Class Crawler
  *
  * PHP Version 7
  *
@@ -16,10 +15,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @copyright 2014-2017 Simplicity Trade GmbH
  * @license   Proprietary http://www.simplicity.ag
  *
- * @ORM\Table(name="transformation")
+ * @ORM\Table
  * @ORM\Entity
  */
-class Transformation
+class Crawler
 {
     /**
      * The identifier of the category.
@@ -33,8 +32,13 @@ class Transformation
     protected $id;
 
     /**
-     * The category name.
+     * @var string
      *
+     * @ORM\Column(type="string")
+     */
+    protected $language;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string")
@@ -42,38 +46,9 @@ class Transformation
     protected $name;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
+     * @var string
      *
-     * @return void
+     * @ORM\Column(type="string")
      */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return void
-     */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
+    protected $description;
 }

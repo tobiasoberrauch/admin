@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Doctrine\ORM\EntityManager;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 
 /**

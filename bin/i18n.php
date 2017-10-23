@@ -7,23 +7,23 @@
 
 // Configuration options
 // ----------------------------------------------------------------------------
-$translationsDir = __DIR__.'/../vendor/javiereguiluz/easyadmin-bundle/Resources/translations';
+$translationsDir = __DIR__ . '/../vendor/javiereguiluz/easyadmin-bundle/Resources/translations';
 
 // Don't change anything below this line
 // ----------------------------------------------------------------------------
-$englishTranslations = array(
-    'EasyAdminBundle' => getTranslationKeys($translationsDir.'/EasyAdminBundle.en.xlf'),
-    'messages' => getTranslationKeys($translationsDir.'/messages.en.xlf'),
-);
+$englishTranslations = [
+    'EasyAdminBundle' => getTranslationKeys($translationsDir . '/EasyAdminBundle.en.xlf'),
+    'messages'        => getTranslationKeys($translationsDir . '/messages.en.xlf'),
+];
 
 $missingTranslations = findMissingTranslations($englishTranslations, $translationsDir);
 displayResult($missingTranslations);
 
 function findMissingTranslations($referenceTranslation, $translationsDir)
 {
-    $missingTranslations = array();
+    $missingTranslations = [];
 
-    foreach (array('EasyAdminBundle', 'messages') as $domain) {
+    foreach (['EasyAdminBundle', 'messages'] as $domain) {
         $availableTranslations = glob(sprintf('%s/%s.*.xlf', $translationsDir, $domain));
         foreach ($availableTranslations as $translationFile) {
             $extension = ltrim(strstr(basename($translationFile), '.'), '.');
@@ -46,11 +46,11 @@ function findMissingTranslations($referenceTranslation, $translationsDir)
 
 function getTranslationKeys($filePath)
 {
-    $translations = array();
-    $xmlContents = simplexml_load_file($filePath);
+    $translations = [];
+    $xmlContents = simplexml_load_string(file_get_contents($filePath));
 
-    foreach($xmlContents->file->body->{'trans-unit'} as $translation) {
-        $translations[] = (string) $translation->source;
+    foreach ($xmlContents->file->body->{'trans-unit'} as $translation) {
+        $translations[] = (string)$translation->source;
     }
 
     return $translations;
@@ -70,6 +70,6 @@ function displayResult($missingTranslations)
 
         echo 'Checkout the original translations in `Resources/translations/EasyAdminBundle.en.xlf` and `Resources/translations/messages.en.xlf`';
 
-        echo "\n\n".str_repeat('-', 80)."\n\n";
+        echo "\n\n" . str_repeat('-', 80) . "\n\n";
     }
 }

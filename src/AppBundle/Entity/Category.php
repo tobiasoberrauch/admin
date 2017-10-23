@@ -27,16 +27,18 @@ class Category
      * The identifier of the category.
      *
      * @var int
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id = null;
+    protected $id;
 
     /**
      * The category name.
      *
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     protected $name;
@@ -45,6 +47,7 @@ class Category
      * Product in the category.
      *
      * @var Product[]
+     *
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="categories")
      **/
     protected $products;

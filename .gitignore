@@ -21,7 +21,10 @@ var/data/*
 /web/bundles/
 
 # PHPUnit
-/phpunit.xml
+phpunit.xml
 
 # Composer PHAR
 /composer.phar
+
+# IDE
+.idea

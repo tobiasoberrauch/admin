@@ -1,0 +1,130 @@
+easy_admin:
+    entities:
+
+        Community:
+            class: AppBundle\Entity\Community
+            controller: AppBundle\Controller\Admin\CommunityController
+            label: 'Communities'
+
+        Crawler:
+            class: AppBundle\Entity\Crawler
+            label: 'Crawler'
+
+        Transformation:
+            class: AppBundle\Entity\Transformation
+            label: 'Transformationen'
+
+        PurchaseItem:
+            class: AppBundle\Entity\PurchaseItem
+            label: 'Purchase Items'
+
+        Category:
+            class: AppBundle\Entity\Category
+            label: 'Categories'
+            list:
+                title: 'Product %%entity_label%%'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - 'id'
+                    - { property: 'name', label: 'Label' }
+                    - { property: 'parent', label: 'Parent category' }
+                    - 'products'
+            show:
+                fields:
+                    - 'id'
+                    - { property: 'name', label: 'Label', css_class: 'large' }
+                    - { property: 'parent', label: 'Parent category' }
+                    - 'products'
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-4' }
+                    - { property: 'name', label: 'Label', css_class: 'large', help: 'As displayed on the website (the slug is auto-generated)' }
+                    - { property: 'parent', type: 'easyadmin_autocomplete', label: 'Parent category' }
+
+        Product:
+            class: AppBundle\Entity\Product
+            label: 'Products'
+            list:
+                fields:
+                    - id
+                    - enabled
+                    - name
+                    - { property: 'price', format: '%.2f', css_class: text-right }
+                    - { property: 'ean', type: 'string' }
+                    - { property: 'image', type: 'image', base_path: '%app.path.product_images%' }
+                    - { property: 'createdAt', format: 'j / M / Y' }
+                    - tags
+            show:
+                fields:
+                    - id
+                    - { property: 'name', css_class: 'large' }
+                    - description
+                    - { property: 'enabled', label: 'Published' }
+                    - createdAt
+                    - price
+                    - { property: 'ean', type: 'string' }
+                    - { property: 'image', type: 'image', base_path: '%app.path.product_images%' }
+                    - features
+                    - categories
+                    - tags
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-8', label: 'Basic information', icon: 'pencil' }
+                    - { property: 'name', css_class: 'large' }
+                    - { property: 'description', type: 'ckeditor' }
+                    - { type: 'divider' }
+                    - { property: 'categories', type: 'easyadmin_autocomplete' }
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Product Details', icon: 'cube' }
+                    - { property: 'ean', help: 'EAN-13 valid code. Leave empty if unknown.' }
+                    - { property: 'price', type: 'number' }
+                    - { type: 'section', label: 'Advanced Settings', icon: 'warning', help: 'Reserved for administrators use' }
+                    - { property: 'enabled', label: 'Published' }
+                    - { property: 'createdAt' }
+                    - { type: 'group', css_class: 'col-sm-8 new-row' }
+                    - { property: 'features' }
+                    - { type: 'group', css_class: 'col-sm-4' }
+                    - { property: 'tags' }
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Attachments', icon: 'paperclip' }
+                    - { property: 'imageFile', type: 'vich_image', type_options: { required: true } }
+
+        Purchase:
+            class: AppBundle\Entity\Purchase
+            controller: AppBundle\Controller\Admin\PurchaseController
+            disabled_actions: ['delete']
+            list:
+                actions: [ { name: 'show', icon: 'shopping-basket' } ]
+                fields: ['guid', 'buyer', 'deliveryDate', 'deliveryHour', 'billingAddress', 'purchasedItems', 'total']
+            form:
+                fields:
+                    - { type: 'group', label: 'Delivery Details', icon: 'truck', css_class: 'col-sm-4' }
+                    - deliveryDate
+                    - deliveryHour
+                    - { type: 'divider' }
+                    - 'billingAddress'
+                    - { type: 'group', label: 'Purchase Details', icon: 'shopping-cart', css_class: 'col-sm-4' }
+                    - { property: 'guid', type_options: { 'disabled': true } }
+                    - { property: 'buyer', type: 'easyadmin_autocomplete' }
+
+        User:
+            class: AppBundle\Entity\User
+            list:
+                title: 'Customers'
+                actions: ['-new']
+                help: "<i class=\"fa fa-warning text-danger\" style=\"font-size: 18px\"></i> Don't delete the <strong>john.smith@example.com</strong> user or you won't be able to log in again in the application."
+                fields: ['id', 'isActive', 'username', 'email', 'purchases', { property: 'contract', template: 'contract.html.twig', base_path: '%app.path.user_contracts%' }]
+            show:
+                fields: ['id', 'isActive', 'username', 'email', 'purchases', { property: 'contract', template: 'contract.html.twig', base_path: '%app.path.user_contracts%' }]
+            form:
+                fields:
+                    - { type: 'group', label: 'Account Information', icon: 'user', css_class: 'col-sm-4' }
+                    - { property: 'username' }
+                    - { property: 'isActive' }
+                    - { type: 'group', label: 'Contact Information', icon: 'envelope-o', css_class: 'col-sm-4' }
+                    - { property: 'email' }
+                    - { type: 'group', label: 'Legal Information', icon: 'briefcase', css_class: 'col-sm-4' }
+                    - { property: 'contractFile', type: 'Vich\UploaderBundle\Form\Type\VichFileType' }
+                    - { type: 'group', label: 'Transactions History', icon: 'money', css_class: 'col-sm-12' }
+                    - { property: 'purchases', css_class: 'col-sm-12' }

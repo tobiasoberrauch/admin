@@ -1,19 +1,20 @@
-EasyAdmin Demo
-==============
+# Digitale Plattform
 
-A Symfony demo backend to show [EasyAdmin](https://github.com/javiereguiluz/EasyAdminBundle) features.
+## Todo
+1. REST API?
+1. config.json oder config.xml
+1. Verschiedene Sprachen? (de)
+1. Seo URL?
+1. Authentication methode
+1. API zu data-virtuality
+1. Apache Zeppelin 
 
-How to install this project
----------------------------
-
-  1. `git clone https://github.com/javiereguiluz/easy-admin-demo`
-  1. `cd easy-admin-demo`
-  1. `composer install`
-  1. Edit `app/config/parameters.yml` and configure
-     credentials to acces a database for this demo.
-  1. `php bin/console doctrine:database:create`
-  1. `php bin/console doctrine:schema:create`
-  1. `php bin/console doctrine:fixtures:load --append`
-  1. `php bin/console assets:install --symlink`
-  1. `php bin/console server:run`
-  1. Browse `http://127.0.0.1:8000/admin/`
+## Beispiele
+- Bilderkennung (Bessere Bilder für Expose)
+- Spracherkennung
+- Service-Hotline
+- Service-Chatbot
+- Automatisches Sperren bei ungewöhnlichen Transaktionen
+- Neue Aufgabenstellungen automatisieren, ohne das explizit dafür programmiert werden muss
+- Weltweit alle Datenbanken seit Beginn der Aufzeichnung durchsuchen
+- 
